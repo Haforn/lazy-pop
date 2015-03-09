@@ -1,0 +1,14 @@
+<div class="clearfix top-nav">
+	<%= link_to("Back to user", {:action => 'show'}, :class => "btn left arrow-back link") %>
+</div>
+
+<div class="wrapper clearfix">
+
+	<h2>Delete an user</h2>
+
+	<p>Are you sure you want to delete <strong><%= @user.name %></strong></p>
+
+	<%= link_to("Yes", {:action => 'destroy'}, :class => "btn delete left") %>
+	<%= link_to("No", {:action => 'show'}, :class => "btn new bigger") %>
+
+</div>

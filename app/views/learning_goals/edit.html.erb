@@ -1,0 +1,23 @@
+
+<div class="clearfix top-nav">
+ <%= link_to("Back to competency", {:controller => 'competencies', :action => 'show', :id => @learning_goal.competency_id}, :class => 'btn link left arrow-back') %>
+</div>
+
+<div class="clearfix wrapper">
+	<h2>Edit Learning Goal</h2>
+
+	<%= form_for(:learning_goal, :url => {:action => 'update', :id => @learning_goal.id, :competency_id => @learning_goal.competency_id}) do |f| %> 
+	
+		<%= render(:partial => "form", :locals => {:l => f}) %>
+
+		<br>
+
+		<div class="form-buttons">
+			<%= submit_tag("Update Learning Goal", :class => "btn new bigger") %>
+		</div>
+
+		<%= link_to("Delete", {:action => 'delete', :id => @learning_goal.id, :competency_id => @learning_goal.competency_id}, :class => 'btn delete left') %>
+
+
+	<% end %>
+</div> 

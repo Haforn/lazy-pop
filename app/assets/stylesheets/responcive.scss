@@ -1,0 +1,26 @@
+@media screen and (max-width: 400px) {
+  .btn {
+  	padding: 8px 10px;
+  	&.bigger {
+  		padding: 8px 20px;
+  	}
+  }
+  .wrapper {
+  	margin: 0 6px;
+  }
+  .competency > li {
+  	//padding: 6px;
+  }
+  .link {
+  	&.arrow-forward {
+  		padding-left: $spacing;
+  		&:after {
+	  		top: 3px;
+	  		left: 9px;
+	  	}	
+  	}
+
+  	 
+
+  }
+}

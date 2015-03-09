@@ -1,0 +1,117 @@
+<div class="clearfix top-nav">
+
+	<%= link_to("Back to user", {:controller => 'user', :action => 'show'}, :class => " btn link left arrow-back") %>
+
+	<%= link_to("Add Competency", {:action => 'new'}, :class => "btn new bigger") %>
+
+ </div>
+
+<div class="clearfix wrapper">
+	<h2>Competency overview</h2> 
+
+	<ul class="competency">
+		<% @competencies.each do |competency| %>
+
+			<!-- TODO kan dit niet op een andere manier -->
+			<% if competency.added %>
+				<% @set_class_added = 'added-to-pop' %>
+			<% else %>
+				<% @set_class_added = 'not-added-to-pop' %>
+			<% end %>
+
+			<li class="<%= @set_class_added %> clearfix">
+				
+				<%= link_to(competency.title, {:action => 'show', :id => competency.id}, :class => " basic-link left arrow-forward link") %>
+				
+				<i class="ec">
+					<%= competency.points %> ec 
+					<%= competency.expertise %>
+				</i>
+				
+				<%# link_to("Edit", {:action => 'edit', :id => competency.id}, :class => "btn edit") %> 
+
+				<!-- add our hide the button show learnmoments --> 
+				<% @learnmoments_size = 0 %>
+
+				<% @learnmoments_filterd.each do |learnmoment_count| %>
+					<% if competency.id == learnmoment_count.competency_id %>			<% @learnmoments_size = @learnmoments_size + 1 %> 
+					<% end %>
+				<% end %>
+
+
+				<% @total_hours_spend = 0 %>
+				<% cycle('odd') %> 
+					
+				<ul class="learn-moments">
+				<% @learnmoments_filterd.each do |learnmoment| %>
+					<% if competency.id == learnmoment.competency_id %>
+						
+							<li class="<%= cycle('odd', 'even') %>">
+								<%= link_to(learnmoment.title, {:controller => 'learn_moments', :action => 'show', :id => learnmoment.id, :competency_id => competency.id}, :class => 'basic-link') %> 
+								<% if learnmoment.hours != nil %>
+
+									<span class="hours">
+										<%= @hours_spend[learnmoment.hours - 1] %> hours
+									</span>
+
+									<% @total_hours_spend = @total_hours_spend + learnmoment.hours %>
+
+									<%# link_to("Edit", {:controller => 'learn_moments', :action => 'edit', :id => learnmoment.id, :competency_id => competency.id}, :class => "btn edit") %>
+
+								<%# else %>
+								 	
+								 	<%# link_to("Add Hours", {:controller => 'learn_moments', :action => 'edit', :id => learnmoment.id, :competency_id => competency.id}, :class => "btn edit") %> 
+								
+								<% end %>
+							</li>					
+						
+					<% end %>
+				<% end %>
+				</ul>
+			<div class="time-stroke">
+				<div class="hours-spend">
+					<% if @total_hours_spend > 0 %>
+						<!-- total hours spend, in decimals -->
+						<%= total_hours_spend_decimal = @total_hours_spend.round(2) /2 %>
+					<% else %>
+						<%= total_hours_spend_decimal = 0 %>
+					<% end %>
+				</div>
+
+				<div class="hours-to-compleet">
+					<!-- total hours to compleet -->
+					<%= total_hours_to_compleet = competency.points * 10 %> 
+				</div>
+
+				<!-- getting back the procentage -->
+				<% procentage = total_hours_spend_decimal / total_hours_to_compleet * 100 %>
+				
+				<div class="procentage" style="left: <%= procentage.round(2) %>%;">	
+						<%= procentage.round() %>%
+				</div>
+
+				<% if procentage < 25 %>
+					<% stroke_color = "red" %> 
+				<% elsif procentage < 50 %>
+					<% stroke_color = "orange" %> 
+				<% elsif procentage < 75 %>
+					<% stroke_color = "blue" %> 
+				<% else %>
+					<% stroke_color = "green" %> 
+				<% end %> 
+
+				<!-- gives back the proces line --> 
+				<div class="stroke <%= stroke_color %>" style="width: <%= procentage.round(2) %>%;"> </div>
+			</div>
+				<%= link_to('Add Learn moment', {:controller => 'learn_moments', :action => 'new', :competency_id => competency.id}, :class => "btn new") %>
+
+				<% if @learnmoments_size > 0 %>
+					<a class="btn link left js-show" href="">Show learn moments</a> 
+				<% end %>
+
+			</li> 
+
+		<% end %>
+	</ul>
+</div>
+	

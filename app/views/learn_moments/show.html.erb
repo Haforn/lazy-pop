@@ -1,0 +1,57 @@
+
+<div class="clearfix top-nav">
+
+<%= link_to("Back to competency list", {:controller => "competencies", :action => 'index'}, :class => "btn link arrow-back left") %>
+
+</div>
+
+<div class="clearfix wrapper">
+
+	<h2>Learn moment details</h2>
+
+	<div class="learnmoment-detail">
+		<p>Learn moment in competency <%= @competency.title %></p>
+
+		<p class="title">
+			<strong><%= @learnmoment.title %></strong>
+			<% if @learnmoment.hours != nil %>
+				<span class="hours">
+					<%= @hours_spend[@learnmoment.hours - 1] %> hours
+				</span>
+			<% end %>
+		</p>
+		<% if @learnmoment.what_was_learned.length > 0 %> 
+			<p>
+				<span class="detail-label">What was Learned?</span>
+				<%= @learnmoment.what_was_learned %>
+			</p>
+		<% end %>
+		<% if @learnmoment.what_was_done.length > 0 %>
+			<p>
+				<span class="detail-label">What was done?</span>
+				<%= @learnmoment.what_was_done %>
+			</p>
+		<% end %>
+		<% if @learnmoment.reference.length > 0 %>
+			<p>
+				<span class="detail-label">Reference</span>
+				<%= @learnmoment.reference %>
+			</p>
+		<% end %>
+
+		<% if @learnmoment.image.length > 0 %> 
+		<p>
+			<span class="detail-label">Reference Image</span>
+			<%= image_tag @learnmoment.image %>
+		</p>
+		<% end %>
+		<p>
+			<span class="detail-label">Updated at</span>
+			<%= @learnmoment_updated_at %>
+		</p>
+
+	</div> 
+
+	<%= link_to("Edit", {:action => 'edit', :id => @learnmoment.id, :competency_id => @competency.id}, :class => "btn bigger edit") %>
+
+</div>

@@ -1,0 +1,161 @@
+
+
+<div class="page">
+	<h2>
+		Professioneel Ontwikkelingsplan 
+		<i>//  - The Next Web.</i>
+	</h2>
+
+	<h3>Contact</h3>
+
+	<%= wicked_pdf_image_tag(@user.avatar, :class => 'profile-picture') %>
+
+	<table class="contact-list"> 
+		<tr>
+			<td>Naam:</td> 
+			<td><%= @user.name %></td>
+		</tr>
+		<tr>
+			<td>Email:</td> 
+			<td><%= @user.email %></td>
+		</tr>
+		<% if @user.mobile? %>
+			<tr>
+				<td>Mobiel:</td> 
+				<td><%= @user.mobile %><td>
+			</tr>
+		<% end %>
+
+		<% if @user. student_number? %> 
+			<tr>
+				<td>Student nr:</td> 
+				<td><%= @user.student_number %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	<h3 class="clear-float">Competencie lijst</h3>
+
+	<% total_points = 0 %>
+
+	<table class="competency-list">
+		<% @competencies.each do |competency| %>
+			<tr>
+				<td><%= competency.title %></td>
+				<td class="ec">
+					<%= competency.points %> ec 
+					<%# competency.expertise %>
+				</td>
+			</tr>
+				
+				<% total_points = total_points + competency.points %>
+		<% end %>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>Totaal:</td> 
+			<td class="ec"><%= total_points %> ec</td>
+		</tr> 
+	</table>
+
+</div>
+
+<% @competencies.each do |competency| %>
+	<div class="page">
+		<h2>
+			<%= competency.title %>
+			<i class="ec">
+				<%= competency.points %> 
+				<%= competency.expertise %>
+			</i>
+
+		</h2>
+		
+		<% if competency.learning_goals.any? %>
+			<h3>Leerdoelen</h3>
+	 	<% end %>
+	 	<ul class="learn-goal">
+		<% competency.learning_goals.each do |learning_goal| %>
+			<li>
+			<% if learning_goal.goal_made %>
+				<%= wicked_pdf_image_tag "check.svg" %>
+			<% else %>
+				<%= wicked_pdf_image_tag "cross.svg" %>
+			<% end %>
+			
+				<%= learning_goal.goal %>
+			</li>
+
+		<% end %>
+		</ul>
+
+		<% if competency.learn_moments.any? %>
+			<h3>Leermomenten</h3>
+	 	<% end %>
+
+	 	<% total_hours = 0 %>
+
+		<% competency.learn_moments.each do |learn_moment| %>
+			
+			<h4>
+				<%= learn_moment.title %> 
+				<% if learn_moment.hours != nil %>
+					<span class="hours">
+					<%= @hours_spend[learn_moment.hours - 1] %> uren
+					</span>
+
+					<% total_hours = total_hours + learn_moment.hours %> 
+
+				<% end %>
+			</h4>
+			<% if learn_moment.what_was_learned.length > 0 %>
+			  <strong>Wat is er geleerd?</strong>
+			  <p><%= learn_moment.what_was_learned %></p>
+			<% end %>
+
+			<% if learn_moment.what_was_done.length > 0 %>
+				<strong>Wat is er gedaan?</strong>
+				<p><%= learn_moment.what_was_done %></p>
+			<% end %>
+
+			<% if learn_moment.image.length > 0 %>
+				<%= wicked_pdf_image_tag learn_moment.image %>
+			<% end %>
+
+			<% if learn_moment.reference.length > 0 %>
+				<p>
+					<b>Referencie:</b> <%= learn_moment.reference %>
+				</p>
+			<% end %>
+		<% end %>
+</div>
+<div class="page">
+	<% if total_hours > 0 %>
+		<h3>De Rekening</h3>
+		<ul class="hour-list">
+		<% competency.learn_moments.each do |learn_moment| %>
+			<li>	
+				<%= learn_moment.title %>
+				<% if learn_moment.hours != nil %>		
+					<span class="hours">
+						<%= @hours_spend[learn_moment.hours - 1] %> uren
+					</span>
+				<% end %>
+			</li>
+		<% end %>
+
+
+			<li>
+				<strong>
+					Totaal: 
+					<span class="hours">
+						<%= total_hours / 2 %> uren
+					</span>
+				</strong>
+			</li>
+		</ul>
+	<% end %>
+</div>
+	
+<% end %>

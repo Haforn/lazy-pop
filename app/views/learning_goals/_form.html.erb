@@ -1,0 +1,13 @@
+<%= error_messages_for(@learning_goal) %>
+
+<li>
+	<%= l.label(:goal, "Learning Goal") %>
+	<%= l.text_area(:goal)  %>
+</li>
+
+<li>
+	<%= l.label(:goal_made) %>
+	<%= l.check_box(:goal_made) %>
+</li>
+
+<%= l.hidden_field(:competency_id, :value => @competency.id) %>

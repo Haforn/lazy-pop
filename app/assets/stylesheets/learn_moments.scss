@@ -1,0 +1,38 @@
+// Place all the styles related to the LearnMoments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+/* Learnmoment detail
+------------------------------------------------------*/
+
+.learnmoment-detail {
+	.detail-label {
+		width: 100%;
+		font-style: italic;
+		display: block;
+		color: #555;
+		border-bottom: 1px solid whitesmoke;
+		padding: $spacing/4 0;
+		margin: $spacing/8 0;
+	}
+	p {
+		//margin-bottom: $spacing;
+	}
+	.title {
+		font-size: 14px !important;
+		margin-top: $spacing;
+	}
+	.hours {
+		font-size: 14px !important;
+	}
+	img {
+		border-radius: 4px;
+		margin-top: $spacing/2;
+	  width: 100%;
+	  height: 100%;
+	}
+}
+
+/* Learnmoment detail */

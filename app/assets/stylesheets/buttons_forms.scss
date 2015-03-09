@@ -1,0 +1,252 @@
+
+@import 'variables';
+
+/* Forms input and select
+------------------------------------------------------*/
+
+form {
+	//margin: 0 $spacing/4;
+	li {
+		margin: 0 14px 0 0;
+	}
+	li:last-child {
+		margin: 0;
+	}
+}
+input[type="password"],
+input[type="text"],
+textarea,
+select {
+	font-size: 14px;
+	width: 100%;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	color: #333;
+	padding: $spacing/4 0 $spacing/4 $spacing/2;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	display: block;
+	border-radius: 4px;
+	height: $spacing;
+	margin: $spacing/4 0 $spacing/2;
+	&:focus {
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+		border-color: #66afe9;
+	}
+}
+
+select {
+	height: 32px;
+	width: 80%;
+}
+
+textarea {
+	min-height: 150px;
+	padding: $spacing/2 0 $spacing/2 $spacing/2;
+	max-width: 100%;
+}
+
+input[type="submit"] {
+	width: auto;
+}
+
+input[type="file"] {
+	//background: #777;
+	position: relative;
+	padding: $spacing/2;
+	padding-left: 42px;
+	&:after {
+		content: 'Afbeelding uploaden';
+		position: absolute;
+		background: $blue;
+		left: 0;
+		padding: $spacing/2 + 2;
+		color: #fff;
+		border-radius: 4px;
+		top: 0;
+		transition: 0.3s;
+	}
+	&:hover {
+		&:after {
+			background: $dark-blue;
+		}
+	}
+}
+
+/* END Forms input and select */
+
+
+/* Form Errors
+------------------------------------------------------*/
+
+.form-errors {
+	li, li:last-child {
+		border: 1px solid $red;
+		background: $soft-red;
+		border-radius: 4px;
+		padding: $spacing/2;
+		color: $red;
+		margin: $spacing/2 0;
+		//box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6);
+	}
+}
+
+.field_with_errors {
+	color: $red;
+	input {
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6);
+		border: 1px solid $red;
+	}
+}
+
+/* Notivication
+------------------------------------------------------*/
+.notice {
+	padding: 12px;
+	border: 1px solid $green;
+	background: $soft-green;
+	text-align: center;
+	color: $green;
+	border-radius: 4px;
+	font-size: 12px;
+	position: absolute;
+	width: 40%;
+	top: 12px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	&.fail {
+		background: $soft-red;
+		border: 1px solid $red;
+		color: $red;
+	}
+}
+
+
+/* button, link, edit, delete, added
+------------------------------------------------------*/
+
+.btn {
+	color: #fff;
+	padding: $spacing/2 $spacing;
+	//margin: 0 $spacing/4;
+	text-decoration: none;
+	border-radius: 4px;
+	float: right;
+	font-size: 12px;
+	//text-transform: uppercase;
+	border: 1px solid;
+	transition: 0.3s;
+	&.edit {
+		background: $blue;
+		border-color: $blue;
+		&:hover {
+			background: $dark-blue;
+		}
+	}
+	&.delete {
+		background: $red;
+		border-color: $red;
+		&:hover {
+			background: $dark-red;
+		}
+	}
+	&.new {
+		background: $green;
+		border-color: $green;
+		&:hover {
+			background: $dark-green;
+		}
+	}
+	&.left {
+		float: left;
+	}
+	&.bigger {
+		padding: $spacing/2 $spacing*2;
+		font-size: 12px;
+	}
+	&.small {
+		padding: $spacing/4 $spacing/2;
+	}
+}
+
+.link {
+	color: #000;
+	//color: $blue;
+	text-decoration: none;
+	border: 1px solid #ccc;
+	//border: 1px solid $blue;
+	background: #fff;
+	&.active,
+	&:hover {
+		background: #e6e6e6;
+		border-color: #adadad;
+		text-decoration: none;
+		//color: $dark-blue;
+		//border-color: $dark-blue; 
+	}
+	&.arrow-back {
+		position: relative;
+		padding-left: $spacing*1.5;
+		&:before {
+			content: '«';
+			position: absolute;
+			font-size: 18px;
+			left: 17px;
+			top: 7px;
+		}
+	}
+	&.arrow-forward {
+		position: relative;
+		padding-right: $spacing*1.5;
+		&:after {
+			content: '»';
+			position: absolute;
+			font-size: 18px;
+			right: 17px;
+			top: 7px;
+		}
+	}
+} 
+
+.basic-link {
+	border: none !important;
+	color: #333 !important;
+	background: none;
+	transition: 0.3s;
+	&:hover {
+		text-decoration: none;
+		//background: none;
+	}
+	&.arrow-forward {
+		padding: $spacing/6 18px $spacing/6 $spacing/4;
+		border-radius: 4px;
+		&:after {
+			top: -1px;
+			font-size: 20px;
+			right: $spacing/6;		
+		}
+	}
+}
+
+/* END button, link, edit, delete, added */
+
+
+/* Logout 
+------------------------------------------------------*/
+
+.logout {
+	//padding: $spacing/2;
+	position: absolute;
+	top: $spacing/2;
+	right: $spacing/2;
+	background: #fff;
+	//border-radius: 0;
+}
+
+
+/* js show hide learn moments */ 
+
+.js-show {
+	min-width: 120px;
+}

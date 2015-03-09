@@ -1,0 +1,25 @@
+<%# error_messages_for(@competency) %>
+
+<li>
+	<%= f.label(:title, "Competency") %>
+	<%= f.select(:title, @title_select_options)  %>
+</li>
+
+<% points_select_options = [3,6,9,12,15,18,21,24,27,30] %>
+
+<li>
+	<%= f.label(:points, "Total ec's") %>
+	<%= f.select(:points, points_select_options) %>
+</li>
+
+<li>
+	<%= f.label(:expertise) %>
+	<%= f.select(:expertise, @expertise_select_options) %>  
+</li>
+
+<li>
+	<%= f.check_box(:added) %>
+	<%= f.label(:added, "Add to POP") %>
+</li>
+
+<%= f.hidden_field(:user_id, :value => @user.id) %>

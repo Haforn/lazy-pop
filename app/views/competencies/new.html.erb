@@ -1,0 +1,23 @@
+<div class="clearfix top-nav">
+
+		<%= link_to("Back to overview", {:action => 'index'}, :class => "btn link arrow-back left") %>
+
+</div>
+
+<div class="clearfix wrapper">
+
+	<h2>Create Competency</h2>
+
+	<%= form_for(:competency, :url => {:action => 'create', :user_id => @user.id}) do |f| %> 
+	
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<br>
+
+		<div class="form-buttons">
+			<%= submit_tag("Create Competency", :class => "btn new bigger") %>
+		</div>
+
+		<% end %>
+
+</div>

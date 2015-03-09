@@ -1,0 +1,28 @@
+
+<div class="clearfix top-nav">
+	
+	<%= link_to("Back to learn moment", {:action => 'show', :id => @learnmoment.id, :competency_id => @learnmoment.competency_id}, :class => "btn link arrow-back left") %>
+
+</div>
+
+<div class="wrapper clearfix">
+	
+	<h2>Edit Learn Moment</h2>
+	<ul>
+		<%= form_for(:learnmoment, :url => {:action => 'update', :id => @learnmoment.id, :competency_id => @learnmoment.competency_id}, :html => {:multipart => true}) do |f| %> 
+		
+			<%= render(:partial => "form", :locals => {:f => f}) %>
+
+			<br>
+
+			<li class="form-buttons">
+				<%= submit_tag("Update Learn Moment", :class => "btn edit bigger") %>
+			</li>
+
+		<% end %>
+			<li>
+				<%= link_to("Delete Moment", {:action => 'delete', :id => @learnmoment.id, :competency_id => @learnmoment.competency_id}, :class => "btn left delete") %>
+			</li>
+	</ul>
+	
+</div>

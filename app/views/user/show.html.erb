@@ -1,0 +1,64 @@
+
+<div class="clearfix top-nav">
+<%= link_to "Build your pop", {:controller => 'generate_pdf', :action => 'show.pdf'}, :class => ' left btn new', :target => "_blank" %> 
+
+<%= link_to("Show Competencies", {:controller => 'competencies'}, :class => "btn link arrow-forward") %>
+
+</div>
+
+<div class="wrapper clearfix user">
+	<h2>Showing user</h2> 
+
+	<table>	
+		<% if @user.name? %>
+		<tr>
+			<td class="bold">Name:</td> 
+			<td><%= @user.name %></td>
+		</tr>
+		<% end %>
+		<% if @user.username? %>
+			<tr>
+				<td class="bold">Username:</td> 
+				<td><%= @user.username %></td>
+			</tr>
+		<% end %>
+		<% if @user.email? %>
+			<tr>
+				<td class="bold">Email:</td> 
+				<td><%= @user.email %></td>
+			</tr>
+		<% end %>
+
+		<% if @user.mobile? %>
+			<tr>
+				<td class="bold">Mobiel nr:</td> 
+				<td><%= @user.mobile %></td>
+			</tr>
+		<% end %>
+
+		<% if @user.student_number? %>
+			<tr>
+				<td class="bold">Student nr:</td> 
+				<td><%= @user.student_number %></td>
+			</tr>
+		<% end %>
+			<tr>
+				<td class="bold">Updated at:</td> 
+				<td><%= @user_updated_at %></td>
+			</tr>
+	</table>
+	
+	<div class="profile-picture js-user-image">
+		<%= image_tag @user.avatar %>
+	</div>
+	
+	<div class="clearfix"><br></div>
+
+	<%= link_to("Delete user", {:action => 'delete'}, :class => "btn delete left") %>
+
+	<%= link_to("Edit user", {:action => 'edit'}, :class => "btn edit bigger") %> 
+
+</div> 
+
+
+

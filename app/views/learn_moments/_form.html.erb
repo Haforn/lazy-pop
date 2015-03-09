@@ -1,0 +1,50 @@
+<%= error_messages_for(@learn_moment) %>
+
+<li>
+	<%= f.label(:title, "Learn Moment") %>
+	<%= f.text_field(:title)  %>
+</li>
+
+<li>
+	<%= f.label(:what_was_learned) %>
+</li>
+<li>
+	<%= f.text_area(:what_was_learned)  %>
+</li>
+
+<li>
+	<%= f.label(:what_was_done) %>
+</li>
+<li>
+	<%= f.text_area(:what_was_done)  %>
+</li>
+
+<li>
+	<%= f.label(:reference) %>
+	<%= f.text_field(:reference)  %>
+</li>
+
+<li>
+	<%= f.label(:image, "Add an image for reference") %>
+	<%= f.file_field(:image) %>
+</li>
+
+<% hours_select_options = [
+	[0.30,1],[1,2],
+	[1.30,3],[2,4],
+	[2.30,5],[3,6],
+	[3.30,7],[4,8],
+	[4.30,9],[5,10],
+	[5.30,11],[6,12],
+	[6.30,13],[7,14],
+	[7.30,15],[8,16]
+
+] %>
+
+<li>
+	<%= f.label(:hours, "Hours spend") %>
+	<%= f.select(:hours, hours_select_options) %>
+</li>
+
+
+<%= f.hidden_field(:competency_id, :value => @competency.id) %>

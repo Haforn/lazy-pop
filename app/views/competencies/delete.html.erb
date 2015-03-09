@@ -1,0 +1,17 @@
+
+<div class="clearfix top-nav">
+
+		<%= link_to("Back to overview", {:action => 'index'}, :class => "btn link arrow-back left") %>
+
+</div>
+
+<div class="clearfix wrapper">
+
+	<h2>Delete competency</h2>
+
+	<p>Are you sure you want to delete <%= @competency.title %></p>
+
+	<%= link_to("Yes", {:action => 'destroy', :id => @competency.id}, :class => "btn delete left") %>
+	<%= link_to("No", {:action => 'show', :id => @competency.id}, :class => "btn new bigger") %>
+
+</div>

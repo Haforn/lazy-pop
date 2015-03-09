@@ -1,0 +1,24 @@
+<div class="clearfix top-nav">
+	
+	<%= link_to("Back to learn moment", {:action => 'show', :id => @learnmoment.id, :competency_id => @learnmoment.competency_id}, :class => "btn link arrow-back left") %>
+
+</div>
+
+<div class="clearfix wrapper">
+
+	<h2>Delete Learning Moment</h2>
+
+	<p>Are sure you want to delete the following Learning Moment?</p>
+
+	<p>
+		<strong>
+			<%= @learnmoment.title %>
+		</strong>
+
+	</p>
+
+	<%= link_to("Yes", {:action => 'destroy', :id => @learnmoment.id, :competency_id => @learnmoment.competency_id}, :class => 'btn delete left') %>
+
+	<%= link_to("No", {:action => 'show', :id => @learnmoment.id, :competency_id => @learnmoment.competency_id}, :class => 'btn new bigger') %> 
+
+</div>
