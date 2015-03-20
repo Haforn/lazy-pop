@@ -13,8 +13,7 @@ function showOurHideLearnMoments() {
 	$('.js-show').on('click', function(e) {
 		e.preventDefault();
 		var learnMoment = $(this).parent().find('.learn-moments');
-
-		// Toggle the class show
+		
 		$(learnMoment).toggleClass('show');
 		$(this).toggleClass('active');
 		if ($(this).hasClass('active')) {

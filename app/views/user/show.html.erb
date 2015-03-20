@@ -10,46 +10,46 @@
 	<h2>Showing user</h2> 
 
 	<table>	
-		<% if @user.name? %>
+		<% if current_user.name? %>
 		<tr>
 			<td class="bold">Name:</td> 
-			<td><%= @user.name %></td>
+			<td><%= current_user.name %></td>
 		</tr>
 		<% end %>
-		<% if @user.username? %>
+		<% if current_user.username? %>
 			<tr>
 				<td class="bold">Username:</td> 
-				<td><%= @user.username %></td>
+				<td><%= current_user.username %></td>
 			</tr>
 		<% end %>
-		<% if @user.email? %>
+		<% if current_user.email? %>
 			<tr>
 				<td class="bold">Email:</td> 
-				<td><%= @user.email %></td>
+				<td><%= current_user.email %></td>
 			</tr>
 		<% end %>
 
-		<% if @user.mobile? %>
+		<% if current_user.mobile? %>
 			<tr>
 				<td class="bold">Mobiel nr:</td> 
-				<td><%= @user.mobile %></td>
+				<td><%= current_user.mobile %></td>
 			</tr>
 		<% end %>
 
-		<% if @user.student_number? %>
+		<% if current_user.student_number? %>
 			<tr>
 				<td class="bold">Student nr:</td> 
-				<td><%= @user.student_number %></td>
+				<td><%= current_user.student_number %></td>
 			</tr>
 		<% end %>
 			<tr>
 				<td class="bold">Updated at:</td> 
-				<td><%= @user_updated_at %></td>
+				<td><%= current_user.updated_at.strftime "%d/%m/%Y %H:%M" %></td>
 			</tr>
 	</table>
 	
 	<div class="profile-picture js-user-image">
-		<%= image_tag @user.avatar %>
+		<%= image_tag current_user.avatar %>
 	</div>
 	
 	<div class="clearfix"><br></div>

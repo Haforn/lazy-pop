@@ -14,8 +14,6 @@ class LearnMomentsController < ApplicationController
                     '5.30', '6', 
                     '6.30', '7', 
                     '7.30', '8']
-  
-    @learnmoment_updated_at = @learnmoment.updated_at.strftime "%d/%m/%Y %H:%M"
   end
 
   def new

@@ -2,15 +2,7 @@ class UserController < ApplicationController
  
 	layout 'application'
 
-  def index
-  	@users = User.sorted
-  end
-
   def show
-    
-  	@user = @current_user
-    @user_updated_at = @user.updated_at.strftime "%d/%m/%Y %H:%M"
-
   end 
 
   def new
@@ -28,25 +20,22 @@ class UserController < ApplicationController
   end 
 
   def edit
-  	@user = @current_user
   end
 
   def update
-    @user = @current_user
-    if @user.update_attributes(user_params)
+    if current_user.update_attributes(user_params)
       flash[:notice] = "User updated successfully."
-      redirect_to(:action => 'show', :id => @user.id)
+      redirect_to(:action => 'show', :id => current_user.id)
     else
       render('edit')
     end
   end
 
   def delete
-    @user = @current_user
   end
 
   def destroy
-    @user = @current_user.destroy
+    current_user.destroy
     flash[:notice] = "User successfully deleted"
     redirect_to(:controller => 'access', :action => 'login')
   end 

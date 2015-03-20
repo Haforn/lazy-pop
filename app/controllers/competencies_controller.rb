@@ -2,10 +2,10 @@ class CompetenciesController < ApplicationController
 
 	layout 'application'
 
-	before_action :find_user, :title_select_options_array, :expertise_select_options_array
+	before_action :title_select_options_array, :expertise_select_options_array
 
 	def index
-		@competencies = Competency.where(:user_id => @user.id)
+		@competencies = Competency.where(:user_id => current_user.id)
 
 		@learnmoments = LearnMoment.all.order("learn_moments.competency_id DESC, learn_moments.updated_at DESC")
 
@@ -86,7 +86,7 @@ class CompetenciesController < ApplicationController
 		end 
 
 		flash[:notice] = "Competency destroyed successfully"
-    redirect_to(:action => 'index', :user_id => @user.id)
+    redirect_to(:action => 'index', :user_id => current_user.id)
 	end
 
 	def create_learning_goal 
@@ -108,10 +108,6 @@ class CompetenciesController < ApplicationController
 
 		def competency_params
 			params.require(:competency).permit(:title, :added, :points, :user_id, :expertise)
-		end
-
-		def find_user
-			@user = @current_user
 		end
 
 		def title_select_options_array

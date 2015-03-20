@@ -7,7 +7,7 @@
 
 	<h2>Edit user</h2>
 
-	<p>You are edditing <%= @user.name %></p>
+	<p>You are edditing <%= current_user.name %></p>
 
 	<%= form_for(:user, :url => {:action => 'update'}, :html => {:multipart => true}) do |f| %>
 		<ul>
