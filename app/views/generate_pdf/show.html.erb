@@ -8,7 +8,7 @@
 
 	<h3>Contact</h3>
 
-	<%= wicked_pdf_image_tag(current_user.avatar, :class => 'profile-picture') %>
+	<%= wicked_pdf_image_tag(current_user.avatar, :class => 'profile-picture') if current_user.avatar.present? %>
 
 	<table class="contact-list"> 
 		<tr>

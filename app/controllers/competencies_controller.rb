@@ -3,7 +3,7 @@ class CompetenciesController < ApplicationController
 	layout 'application'
 
 	before_action :title_select_options_array, :expertise_select_options_array
-	before_action :set_competency, except: [:index, :new, :create]
+	before_action :set_competency, except: [:index, :new, :create, :create_learning_goal]
 
 	def index
 		@competencies = current_user.competencies

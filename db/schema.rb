@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20150309210740) do
   create_table "learning_goals", force: :cascade do |t|
     t.text     "goal"
     t.integer  "competency_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "goal_made",     default: false
   end
 
