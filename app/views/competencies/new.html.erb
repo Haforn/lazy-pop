@@ -8,7 +8,7 @@
 
 	<h2>Create Competency</h2>
 
-	<%= form_for(:competency, :url => {:action => 'create', :user_id => @user.id}) do |f| %> 
+	<%= form_for(:competency, :url => {:action => 'create', :user_id => current_user.id}) do |f| %> 
 	
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 

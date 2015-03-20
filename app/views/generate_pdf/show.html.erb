@@ -8,28 +8,28 @@
 
 	<h3>Contact</h3>
 
-	<%= wicked_pdf_image_tag(@user.avatar, :class => 'profile-picture') %>
+	<%= wicked_pdf_image_tag(current_user.avatar, :class => 'profile-picture') %>
 
 	<table class="contact-list"> 
 		<tr>
 			<td>Naam:</td> 
-			<td><%= @user.name %></td>
+			<td><%= current_user.name %></td>
 		</tr>
 		<tr>
 			<td>Email:</td> 
-			<td><%= @user.email %></td>
+			<td><%= current_user.email %></td>
 		</tr>
-		<% if @user.mobile? %>
+		<% if current_user.mobile? %>
 			<tr>
 				<td>Mobiel:</td> 
-				<td><%= @user.mobile %><td>
+				<td><%= current_user.mobile %><td>
 			</tr>
 		<% end %>
 
-		<% if @user. student_number? %> 
+		<% if current_user. student_number? %> 
 			<tr>
 				<td>Student nr:</td> 
-				<td><%= @user.student_number %></td>
+				<td><%= current_user.student_number %></td>
 			</tr>
 		<% end %>
 	</table>
