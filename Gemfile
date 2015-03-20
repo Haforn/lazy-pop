@@ -44,13 +44,6 @@ gem 'imagemagick-binaries'
 gem 'mini_magick'
 gem 'carrierwave'
 
-# Call 'byebug' anywhere in the code to stop execution and get a debugger console
-gem 'byebug'
-
-# Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', '~> 2.0'
-
-
 group :production do 
 	gem 'mysql2'
 	gem 'capistrano', '~> 3.2.1'
@@ -58,9 +51,15 @@ group :production do
 end
 
 
+
 group :development, :test do
 	gem 'sqlite3'
-  
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
