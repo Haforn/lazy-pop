@@ -1,5 +1,3 @@
-<%= @learnmoments %>
-
 <div class="clearfix top-nav">
 
 	<%= link_to("Back to user", {:controller => 'user', :action => 'show'}, :class => " btn link left arrow-back") %>
@@ -29,23 +27,40 @@
 					<%= competency.points %> ec 
 					<%= competency.expertise %>
 				</i>
+				
+				<%# link_to("Edit", {:action => 'edit', :id => competency.id}, :class => "btn edit") %> 
+
+				<!-- add our hide the button show learnmoments --> 
+				<% @learnmoments_size = 0 %>
+
+				<% @learnmoments_filterd.each do |learnmoment_count| %>
+					<% if competency.id == learnmoment_count.competency_id %>			<% @learnmoments_size = @learnmoments_size + 1 %> 
+					<% end %>
+				<% end %>
+
 
 				<% @total_hours_spend = 0 %>
-				<% cycle('odd') %>
+				<% cycle('odd') %> 
 					
 				<ul class="learn-moments">
-				<% competency.learn_moments.each do |learn_moment| %>
-					<% if competency.id == learn_moment.competency_id %>
+				<% @learnmoments_filterd.each do |learnmoment| %>
+					<% if competency.id == learnmoment.competency_id %>
 						
 							<li class="<%= cycle('odd', 'even') %>">
-								<%= link_to(learn_moment.title, {:controller => 'learn_moments', :action => 'show', :id => learn_moment.id, :competency_id => competency.id}, :class => 'basic-link') %> 
-								<% if learn_moment.hours != nil %>
+								<%= link_to(learnmoment.title, {:controller => 'learn_moments', :action => 'show', :id => learnmoment.id, :competency_id => competency.id}, :class => 'basic-link') %> 
+								<% if learnmoment.hours != nil %>
 
 									<span class="hours">
-										<%= @hours_spend[learn_moment.hours - 1] %> hours
+										<%= @hours_spend[learnmoment.hours - 1] %> hours
 									</span>
 
-									<% @total_hours_spend = @total_hours_spend + learn_moment.hours %>
+									<% @total_hours_spend = @total_hours_spend + learnmoment.hours %>
+
+									<%# link_to("Edit", {:controller => 'learn_moments', :action => 'edit', :id => learnmoment.id, :competency_id => competency.id}, :class => "btn edit") %>
+
+								<%# else %>
+								 	
+								 	<%# link_to("Add Hours", {:controller => 'learn_moments', :action => 'edit', :id => learnmoment.id, :competency_id => competency.id}, :class => "btn edit") %> 
 								
 								<% end %>
 							</li>					
@@ -90,7 +105,7 @@
 			</div>
 				<%= link_to('Add Learn moment', {:controller => 'learn_moments', :action => 'new', :competency_id => competency.id}, :class => "btn new") %>
 
-				<% if competency.learn_moments.count > 0 %>
+				<% if @learnmoments_size > 0 %>
 					<a class="btn link left js-show" href="">Show learn moments</a> 
 				<% end %>
 

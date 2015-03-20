@@ -3,23 +3,10 @@ class CompetenciesController < ApplicationController
 	layout 'application'
 
 	before_action :title_select_options_array, :expertise_select_options_array
+	before_action :set_competency, except: [:index, :new, :create]
 
 	def index
-		@competencies = Competency.where(:user_id => current_user.id)
-
-		@learnmoments = LearnMoment.all.order("learn_moments.competency_id DESC, learn_moments.updated_at DESC")
-
-		# filtering out learnmoments to keep the looping to a minimum in the index this looping is nessecary, maby theres a better way
-		
-		@learnmoments_filterd = Array.new
-
-		@competencies.each do |competency|
-			@learnmoments.each do |learnmoment|
-				if competency.id == learnmoment.competency_id
-					@learnmoments_filterd << learnmoment
-				end
-			end
-		end
+		@competencies = current_user.competencies
 
 		@hours_spend = ['0.30', '1', 
                     '1.30', '2', 
@@ -32,8 +19,6 @@ class CompetenciesController < ApplicationController
 	end
 
 	def show 
-		@competency = Competency.find(params[:id])
-
 		@learning_goals = LearningGoal.where(:competency_id => @competency.id).order("learning_goals.updated_at DESC") 
 	end
 
@@ -52,12 +37,9 @@ class CompetenciesController < ApplicationController
 	end
 
 	def edit
-		@competency = Competency.find(params[:id])
 	end
 
-	def update
-		@competency = Competency.find(params[:id])
-		
+	def update		
 		if @competency.update_attributes(competency_params)
 			flash[:notice] = "Competency updated successfully."
 
@@ -68,11 +50,10 @@ class CompetenciesController < ApplicationController
 	end
 
 	def delete
-		@competency = Competency.find(params[:id])
 	end
 
 	def destroy
-		@competency = Competency.find(params[:id]).destroy
+		@competency.destroy
 		@learnmoments = LearnMoment.where(:competency_id => @competency.id)
 
 		@learnmoments.each do |learnmoment| 
@@ -108,6 +89,10 @@ class CompetenciesController < ApplicationController
 
 		def competency_params
 			params.require(:competency).permit(:title, :added, :points, :user_id, :expertise)
+		end
+
+		def set_competency 
+			@competency = Competency.find(params[:id])
 		end
 
 		def title_select_options_array

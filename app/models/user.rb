@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
-	has_many :competency
+	has_many :competencies
 	
 	#attr_accessible :avatar
 	

@@ -2,7 +2,7 @@ class GeneratePdfController < ApplicationController
 
   def show
 
-    @competencies = Competency.where(:user_id => current_user.id, :added => true)
+    @competencies = current_user.competencies.where(added: true)
 
     @hours_spend = ['0.30', '1', 
                     '1.30', '2', 
@@ -15,7 +15,7 @@ class GeneratePdfController < ApplicationController
     
     respond_to do |format|
       format.html
-      current_user = User.find(current_user.id)
+      current_user
       format.pdf do
         render :pdf => "Pop", :template => 'generate_pdf/show.html.erb', :layout => 'layouts/generate_pdf.html.erb'
       end
