@@ -3,7 +3,7 @@ class AccessController < ApplicationController
   def login
   	# login form
     if session[:user_id]
-      redirect_to(:controller => 'user', :action => 'show', :id => session[:user_id])
+      redirect_to(:controller => 'users', :action => 'show', :id => session[:user_id])
     end
   end
 
@@ -19,7 +19,7 @@ class AccessController < ApplicationController
       session[:user_id] = authorired_user.id
       session[:username] = authorired_user.username
   		flash[:notice] = "You are now logged in."
-  		redirect_to(:controller => "user", :action => 'show', :id => authorired_user.id)
+  		redirect_to(:controller => "users", :action => 'show', :id => authorired_user.id)
   	else 
   		flash[:notice_fail] = "Invalid username/password combination"
   		redirect_to login_path

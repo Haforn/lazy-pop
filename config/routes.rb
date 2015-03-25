@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
+  #resources :users
+
 end
