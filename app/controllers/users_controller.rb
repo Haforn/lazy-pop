@@ -12,21 +12,34 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "User is added to the list"
-      redirect_to(:action => 'index')
+      flash[:notice] = "User is added"
+      redirect_to user_path(current_user.id)
     else
       render('new')
     end
   end 
 
   def edit
+    @user = current_user
   end
 
   def update
-    if current_user.update_attributes(user_params)
-      flash[:notice] = "User updated successfully."
-      redirect_to(:action => 'show', :id => current_user.id)
+    @user = current_user
+    if user_params[:password].present?
+      found_user = User.find(current_user.id)
+      if found_user
+        authorired_user = found_user.authenticate(user_params[:password])
+      end
+    end
+    if authorired_user
+      if @user.update_attributes(user_params)
+        flash[:notice] = "User updated successfully."
+        redirect_to user_path(current_user.id)
+      else
+        render('edit')
+      end
     else
+      flash[:notice_fail] = "Please use your password"
       render('edit')
     end
   end

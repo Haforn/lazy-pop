@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   ## Login ##
   get '/login' => 'access#login'
   get '/logout' => 'access#logout'
-
-  #get '/generate_pdf' => 'generate_pdf#pdf' 
+	
+  resources :users
 
   get '/generate_pdf/show' => 'generate_pdf#show'
 
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
-  #resources :users
 
 end

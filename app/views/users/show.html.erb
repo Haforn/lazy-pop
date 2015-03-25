@@ -51,6 +51,10 @@
 
 	<%= link_to("Delete user", {:action => 'delete'}, :class => "btn delete left") %>
 
-	<%= link_to("Edit user", {:action => 'edit'}, :class => "btn edit bigger") %>
+	<%= link_to "Edit user", edit_user_path, :class => "btn edit bigger" %>
+
+	<div class="clearfix"></div>
+	<br>
+	<%= link_to "New user", new_user_path, :class => "btn new left" %>
 
 

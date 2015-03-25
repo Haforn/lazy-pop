@@ -1,36 +1,45 @@
-<%= error_messages_for(current_user) %>
+<%= error_messages_for(@user) %>
 
-<li>
-	<%= f.label(:name, "First/Last name") %>
-	<%= f.text_field(:name) %> 
-</li>
+<%= form_for(@user, :html => {:multipart => true}) do |f| %>
+	<ul>
 
-<li>
-	<%= f.label(:avatar, "Add your profile picture") %>
-	<%= f.file_field(:avatar) %>
-</li>
+		<li>
+			<%= f.label(:name, "First/Last name") %>
+			<%= f.text_field(:name) %> 
+		</li>
 
-<li>
-	<%= f.label(:username) %>
-	<%= f.text_field(:username) %>
-</li>
+		<li>
+			<%= f.label(:avatar, "Add your profile picture") %>
+			<%= f.file_field(:avatar) %>
+		</li>
 
-<li>
-	<%= f.label(:email, "Email adres")%>
-	<%= f.text_field(:email) %>
-</li>
+		<li>
+			<%= f.label(:username) %>
+			<%= f.text_field(:username) %>
+		</li>
 
-<li>
-	<%= f.label(:mobile, "Mobiel nr")%>
-	<%= f.text_field(:mobile) %>
-</li>
+		<li>
+			<%= f.label(:email, "Email adres")%>
+			<%= f.text_field(:email) %>
+		</li>
 
-<li>
-	<%= f.label(:student_number)%>
-	<%= f.text_field(:student_number) %>
-</li>
+		<li>
+			<%= f.label(:mobile, "Mobiel nr")%>
+			<%= f.text_field(:mobile) %>
+		</li>
 
-<li>
-	<%= f.label(:password) %>
-	<%= f.password_field(:password) %>
-</li>
+		<li>
+			<%= f.label(:student_number)%>
+			<%= f.text_field(:student_number) %>
+		</li>
+
+		<li>
+			<%= f.label(:password) %>
+			<%= f.password_field(:password) %>
+		</li>
+
+		<li>
+			<%= submit_tag(nil, :class => "btn edit bigger") %>
+		</li>
+	</ul>
+<% end %>
