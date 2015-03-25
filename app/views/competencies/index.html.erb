@@ -1,102 +1,93 @@
-<%= @learnmoments %>
+<%= link_to("Add Competency", {:action => 'new'}, :class => "btn new bigger in-top") %>
 
-<div class="clearfix top-nav">
+<h2>Competency overview</h2> 
 
-	<%= link_to("Back to user", {:controller => 'user', :action => 'show'}, :class => " btn link left arrow-back") %>
+<ul class="competency">
+	<% @competencies.each do |competency| %>
 
-	<%= link_to("Add Competency", {:action => 'new'}, :class => "btn new bigger") %>
+		<!-- TODO kan dit niet op een andere manier -->
+		<% if competency.added %>
+			<% @set_class_added = 'added-to-pop' %>
+		<% else %>
+			<% @set_class_added = 'not-added-to-pop' %>
+		<% end %>
 
- </div>
+		<li class="<%= @set_class_added %> clearfix">
+			
+			<%= link_to(competency.title, {:action => 'show', :id => competency.id}, :class => " basic-link left arrow-forward link") %>
+			
+			<i class="ec">
+				<%= competency.points %> ec 
+				<%= competency.expertise %>
+			</i>
 
-<div class="clearfix wrapper">
-	<h2>Competency overview</h2> 
+			<% @total_hours_spend = 0 %>
+			<% cycle('odd') %>
+				
+			<ul class="learn-moments">
+			<% competency.learn_moments.each do |learn_moment| %>
+				<% if competency.id == learn_moment.competency_id %>
+					
+						<li class="<%= cycle('odd', 'even') %>">
+							<%= link_to(learn_moment.title, {:controller => 'learn_moments', :action => 'show', :id => learn_moment.id, :competency_id => competency.id}, :class => 'basic-link') %> 
+							<% if learn_moment.hours != nil %>
 
-	<ul class="competency">
-		<% @competencies.each do |competency| %>
+								<span class="hours">
+									<%= @hours_spend[learn_moment.hours - 1] %> hours
+								</span>
 
-			<!-- TODO kan dit niet op een andere manier -->
-			<% if competency.added %>
-				<% @set_class_added = 'added-to-pop' %>
+								<% @total_hours_spend = @total_hours_spend + learn_moment.hours %>
+							
+							<% end %>
+						</li>					
+					
+				<% end %>
+			<% end %>
+			</ul>
+		<div class="time-stroke">
+			<div class="hours-spend">
+				<% if @total_hours_spend > 0 %>
+					<!-- total hours spend, in decimals -->
+					<%= total_hours_spend_decimal = @total_hours_spend.round(2) /2 %>
+				<% else %>
+					<%= total_hours_spend_decimal = 0 %>
+				<% end %>
+			</div>
+
+			<div class="hours-to-compleet">
+				<!-- total hours to compleet -->
+				<%= total_hours_to_compleet = competency.points * 10 %> 
+			</div>
+
+			<!-- getting back the procentage -->
+			<% procentage = total_hours_spend_decimal / total_hours_to_compleet * 100 %>
+			
+			<div class="procentage" style="left: <%= procentage.round(2) %>%;">	
+					<%= procentage.round() %>%
+			</div>
+
+			<% if procentage < 25 %>
+				<% stroke_color = "red" %> 
+			<% elsif procentage < 50 %>
+				<% stroke_color = "orange" %> 
+			<% elsif procentage < 75 %>
+				<% stroke_color = "blue" %> 
 			<% else %>
-				<% @set_class_added = 'not-added-to-pop' %>
+				<% stroke_color = "green" %> 
+			<% end %> 
+
+			<!-- gives back the proces line --> 
+			<div class="stroke <%= stroke_color %>" style="width: <%= procentage.round(2) %>%;"> </div>
+		</div>
+			<%= link_to('Add Learn moment', {:controller => 'learn_moments', :action => 'new', :competency_id => competency.id}, :class => "btn new") %>
+
+			<% if competency.learn_moments.count > 0 %>
+				<a class="btn link left js-show" href="">Show learn moments</a> 
 			<% end %>
 
-			<li class="<%= @set_class_added %> clearfix">
-				
-				<%= link_to(competency.title, {:action => 'show', :id => competency.id}, :class => " basic-link left arrow-forward link") %>
-				
-				<i class="ec">
-					<%= competency.points %> ec 
-					<%= competency.expertise %>
-				</i>
+		</li> 
 
-				<% @total_hours_spend = 0 %>
-				<% cycle('odd') %>
-					
-				<ul class="learn-moments">
-				<% competency.learn_moments.each do |learn_moment| %>
-					<% if competency.id == learn_moment.competency_id %>
-						
-							<li class="<%= cycle('odd', 'even') %>">
-								<%= link_to(learn_moment.title, {:controller => 'learn_moments', :action => 'show', :id => learn_moment.id, :competency_id => competency.id}, :class => 'basic-link') %> 
-								<% if learn_moment.hours != nil %>
+	<% end %>
+</ul>
 
-									<span class="hours">
-										<%= @hours_spend[learn_moment.hours - 1] %> hours
-									</span>
-
-									<% @total_hours_spend = @total_hours_spend + learn_moment.hours %>
-								
-								<% end %>
-							</li>					
-						
-					<% end %>
-				<% end %>
-				</ul>
-			<div class="time-stroke">
-				<div class="hours-spend">
-					<% if @total_hours_spend > 0 %>
-						<!-- total hours spend, in decimals -->
-						<%= total_hours_spend_decimal = @total_hours_spend.round(2) /2 %>
-					<% else %>
-						<%= total_hours_spend_decimal = 0 %>
-					<% end %>
-				</div>
-
-				<div class="hours-to-compleet">
-					<!-- total hours to compleet -->
-					<%= total_hours_to_compleet = competency.points * 10 %> 
-				</div>
-
-				<!-- getting back the procentage -->
-				<% procentage = total_hours_spend_decimal / total_hours_to_compleet * 100 %>
-				
-				<div class="procentage" style="left: <%= procentage.round(2) %>%;">	
-						<%= procentage.round() %>%
-				</div>
-
-				<% if procentage < 25 %>
-					<% stroke_color = "red" %> 
-				<% elsif procentage < 50 %>
-					<% stroke_color = "orange" %> 
-				<% elsif procentage < 75 %>
-					<% stroke_color = "blue" %> 
-				<% else %>
-					<% stroke_color = "green" %> 
-				<% end %> 
-
-				<!-- gives back the proces line --> 
-				<div class="stroke <%= stroke_color %>" style="width: <%= procentage.round(2) %>%;"> </div>
-			</div>
-				<%= link_to('Add Learn moment', {:controller => 'learn_moments', :action => 'new', :competency_id => competency.id}, :class => "btn new") %>
-
-				<% if competency.learn_moments.count > 0 %>
-					<a class="btn link left js-show" href="">Show learn moments</a> 
-				<% end %>
-
-			</li> 
-
-		<% end %>
-	</ul>
-</div>
 	

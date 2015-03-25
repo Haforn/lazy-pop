@@ -30,11 +30,16 @@
 				<div class="notice fail">
 					<%= flash[:notice_fail] %>
 				</div>
-			<% end %>		
+			<% end %>
 
-		
+			<div class="clearfix top-nav">
+				<%= link_to("Back", :back, :class => "btn link arrow-back left") %>
+			</div>
+
 			<!-- before yield -->
-			<%= yield %>
+			<div class="clearfix wrapper">
+				<%= yield %>
+			</div>
 			<!-- after yield -->
 	
 	<footer>

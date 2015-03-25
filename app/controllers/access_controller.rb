@@ -1,10 +1,4 @@
 class AccessController < ApplicationController
-  
-	layout 'application'
-
-  def index
-  	# displaying text & links
-  end
 
   def login
   	# login form
@@ -28,7 +22,7 @@ class AccessController < ApplicationController
   		redirect_to(:controller => "user", :action => 'show', :id => authorired_user.id)
   	else 
   		flash[:notice_fail] = "Invalid username/password combination"
-  		redirect_to(:action => 'login')
+  		redirect_to login_path
   	end
   end
 
@@ -36,7 +30,7 @@ class AccessController < ApplicationController
     session[:user_id] = nil
     session[:username] = nil
     flash[:notice] = "Logged out"
-    redirect_to(:controller => 'access', :action => 'login')
+    redirect_to login_path
   end
 
 end

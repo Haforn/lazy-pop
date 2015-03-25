@@ -1,21 +1,13 @@
+<h2>Delete Learning Goal</h2>
 
-<div class="clearfix top-nav">
- <%= link_to("Back to competency", {:controller => 'competencies', :action => 'show', :id => @learning_goal.competency_id}, :class => 'btn link left arrow-back') %>
-</div>
+<p>Are sure you want to delete the following Learning Goal?</p>
 
-<div class="clearfix wrapper">
-	<h2>Delete Learning Goal</h2>
+<p>
+	<strong>
+		<%= @learning_goal.goal %>
+	</strong>
+</p>
 
-	<p>Are sure you want to delete the following Learning Goal?</p>
+<%= link_to("Yes", {:action => 'destroy', :id => @learning_goal.id, :competency_id => @learning_goal.competency_id}, :class => 'btn delete left') %>
 
-	<p>
-		<strong>
-			<%= @learning_goal.goal %>
-		</strong>
-	</p>
-
-	<%= link_to("Yes", {:action => 'destroy', :id => @learning_goal.id, :competency_id => @learning_goal.competency_id}, :class => 'btn delete left') %>
-
-	<%= link_to("No", {:controller => 'competencies', :action => 'show', :id => @competency.id, :user_id => @competency.user_id}, :class => 'btn new bigger') %> 
-
-</div>
+<%= link_to("No", {:controller => 'competencies', :action => 'show', :id => @competency.id, :user_id => @competency.user_id}, :class => 'btn new bigger') %>

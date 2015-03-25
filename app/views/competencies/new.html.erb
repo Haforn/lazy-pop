@@ -1,23 +1,13 @@
-<div class="clearfix top-nav">
+<h2>Create Competency</h2>
 
-		<%= link_to("Back to overview", {:action => 'index'}, :class => "btn link arrow-back left") %>
+<%= form_for(:competency, :url => {:action => 'create', :user_id => current_user.id}) do |f| %> 
 
-</div>
+	<%= render(:partial => "form", :locals => {:f => f}) %>
 
-<div class="clearfix wrapper">
+	<br>
 
-	<h2>Create Competency</h2>
+	<div class="form-buttons">
+		<%= submit_tag("Create Competency", :class => "btn new bigger") %>
+	</div>
 
-	<%= form_for(:competency, :url => {:action => 'create', :user_id => current_user.id}) do |f| %> 
-	
-		<%= render(:partial => "form", :locals => {:f => f}) %>
-
-		<br>
-
-		<div class="form-buttons">
-			<%= submit_tag("Create Competency", :class => "btn new bigger") %>
-		</div>
-
-		<% end %>
-
-</div>
+<% end %>

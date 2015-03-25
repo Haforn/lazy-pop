@@ -35,9 +35,12 @@ class UserController < ApplicationController
   end
 
   def destroy
-    current_user.destroy
-    flash[:notice] = "User successfully deleted"
-    redirect_to(:controller => 'access', :action => 'login')
+    if current_user.destroy
+      flash[:notice] = "User successfully deleted"
+      session[:user_id] = nil
+      session[:username] = nil
+      redirect_to login_path
+    end
   end 
 
   private

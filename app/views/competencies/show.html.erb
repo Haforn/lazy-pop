@@ -1,54 +1,47 @@
+<%= link_to("Edit Competency", {:action => "edit", :id => @competency.id}, :class => 'btn edit in-top') %>
 
-<div class="clearfix top-nav">
-<%= link_to("Back to competency list", {:action => "index"}, :class => 'btn link left arrow-back') %>
+<h2><%= @competency.points %> ec <%= @competency.title %></h2>
+<div class="learning-goals">
+	
+	<% if @learning_goals.size > 0 %> 
+		<h4>Learning Goals</h4>
+	<% end %>
 
-<%= link_to("Edit Competency", {:action => "edit", :id => @competency.id}, :class => 'btn edit') %>
+	<ul>
+	<% @learning_goals.each do |learning_goal| %>
+		<% if learning_goal.goal_made %>
+			<% goalmade = "goal-made" %>
+		<% else %>
+			<% goalmade = "goal-not-made" %>
+		<% end %>
+		<li class="<%= cycle('odd', 'even') %> <%= goalmade %>" >
+			<%= link_to("Edit", {:controller => 'learning_goals', :action => 'edit', :id => learning_goal.id, :competency_id => learning_goal.competency_id}, :class => 'btn edit small') %> 
+		
+			<p><%= learning_goal.goal %></p>
+		
+		</li>
+	<% end %> 
+	</ul>
 </div>
 
-<div class="wrapper clearfix">
+<div class="add-learning">
+	<h4>Add Learning Goal</h4>
 
-	<h2><%= @competency.points %> ec <%= @competency.title %></h2>
-	<div class="learning-goals">
-		
-		<% if @learning_goals.size > 0 %> 
-			<h4>Learning Goals</h4>
-		<% end %>
+	<%= form_for(:learning_goal, :url => {:action => 'create_learning_goal'}) do |l| %> 
+	
+		<%= render(:partial => "form_learning_goal", :locals => {:l => l}) %>
 
-		<ul>
-		<% @learning_goals.each do |learning_goal| %>
-			<% if learning_goal.goal_made %>
-				<% goalmade = "goal-made" %>
-			<% else %>
-				<% goalmade = "goal-not-made" %>
-			<% end %>
-			<li class="<%= cycle('odd', 'even') %> <%= goalmade %>" >
-				<%= link_to("Edit", {:controller => 'learning_goals', :action => 'edit', :id => learning_goal.id, :competency_id => learning_goal.competency_id}, :class => 'btn edit small') %> 
-			
-				<p><%= learning_goal.goal %></p>
-			
-			</li>
-		<% end %> 
-		</ul>
-	</div>
+		<br>
 
-	<div class="add-learning">
-		<h4>Add Learning Goal</h4>
+		<div class="form-buttons">
+			<%= submit_tag("Add Learning Goal", :class => "btn new bigger") %>
+		</div>
 
-		<%= form_for(:learning_goal, :url => {:action => 'create_learning_goal'}) do |l| %> 
-		
-			<%= render(:partial => "form_learning_goal", :locals => {:l => l}) %>
+		<div class="clearfix"></div>
 
-			<br>
-
-			<div class="form-buttons">
-				<%= submit_tag("Add Learning Goal", :class => "btn new bigger") %>
-			</div>
-
-			<div class="clearfix"></div>
-
-		<% end %>
-	</div>
+	<% end %>
 </div>
+
 
 
 

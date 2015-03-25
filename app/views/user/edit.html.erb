@@ -1,20 +1,11 @@
+<h2>Edit user</h2>
 
-<div class="clearfix top-nav">
-	<%= link_to("Back to user", {:action => 'show'}, :class => "btn left arrow-back link") %>
-</div>
+<p>You are edditing <%= current_user.name %></p>
 
-<div class="wrapper clearfix">
-
-	<h2>Edit user</h2>
-
-	<p>You are edditing <%= current_user.name %></p>
-
-	<%= form_for(:user, :url => {:action => 'update'}, :html => {:multipart => true}) do |f| %>
-		<ul>
-			<%= render(:partial => 'form', :locals => {:f => f}) %>
-			<br>
-			<li><%= submit_tag("Update user", :class => "btn edit bigger") %></li>
-		</ul>
-	<% end %>
-
-</div>
+<%= form_for(:user, :url => {:action => 'update'}, :html => {:multipart => true}) do |f| %>
+	<ul>
+		<%= render(:partial => 'form', :locals => {:f => f}) %>
+		<br>
+		<li><%= submit_tag("Update user", :class => "btn edit bigger") %></li>
+	</ul>
+<% end %>

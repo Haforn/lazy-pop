@@ -1,12 +1,7 @@
+<%= link_to "Build your pop", {:controller => 'generate_pdf', :action => 'show.pdf'}, :class => ' left btn new in-top', :target => "_blank" %> 
 
-<div class="clearfix top-nav">
-<%= link_to "Build your pop", {:controller => 'generate_pdf', :action => 'show.pdf'}, :class => ' left btn new', :target => "_blank" %> 
+<%= link_to("Show Competencies", {:controller => 'competencies'}, :class => "btn link arrow-forward in-top") %>
 
-<%= link_to("Show Competencies", {:controller => 'competencies'}, :class => "btn link arrow-forward") %>
-
-</div>
-
-<div class="wrapper clearfix user">
 	<h2>Showing user</h2> 
 
 	<table>	
@@ -56,9 +51,6 @@
 
 	<%= link_to("Delete user", {:action => 'delete'}, :class => "btn delete left") %>
 
-	<%= link_to("Edit user", {:action => 'edit'}, :class => "btn edit bigger") %> 
-
-</div> 
-
+	<%= link_to("Edit user", {:action => 'edit'}, :class => "btn edit bigger") %>
 
 

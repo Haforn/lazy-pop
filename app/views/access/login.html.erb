@@ -1,27 +1,22 @@
+<h2>Login</h2>
 
-<div class="wrapper clearfix">
+<div class="login">
+	
+	<ul>
+	<%= form_tag(:action => 'attempt_login') do %>
+		<li>
+			<%= label_tag(:username) %>
+			<%= text_field_tag(:username) %>
+		</li>
+		<li>
+			<%= label_tag(:password) %>
+			<%= password_field_tag(:password) %>
+		</li>
 
-	<h2>Login</h2>
-
-	<div class="login">
-		
-		<ul>
-		<%= form_tag(:action => 'attempt_login') do %>
-			<li>
-				<%= label_tag(:username) %>
-				<%= text_field_tag(:username) %>
-			</li>
-			<li>
-				<%= label_tag(:password) %>
-				<%= password_field_tag(:password) %>
-			</li>
-
-			<li>
-				<%= submit_tag("Log In", :class => 'btn bigger new') %>
-			</li>
-		<% end %>
-		</ul>
-
-	</div>
+		<li>
+			<%= submit_tag("Log In", :class => 'btn bigger new') %>
+		</li>
+	<% end %>
+	</ul>
 
 </div>

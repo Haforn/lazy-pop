@@ -1,22 +1,16 @@
-<div class="clearfix top-nav">
-	<%= link_to("Back to competency", {:action => 'show', :id => @competency.id}, :class => "btn link arrow-back left") %>
-</div>
+<h2>Edit Competency</h2>
 
-<div class="clearfix wrapper">
-	<h2>Edit Competency</h2>
+<ul>
+		<%= form_for(:competency, :url => {:action => 'update', :id => @competency.id}) do |f| %> 
 
-	<ul>
-			<%= form_for(:competency, :url => {:action => 'update', :id => @competency.id}) do |f| %> 
+		<%= render(:partial => "form", :locals => {:f => f}) %>
 
-			<%= render(:partial => "form", :locals => {:f => f}) %>
+		<br>
 
-			<br>
+		<li class="form-buttons">
+			<%= submit_tag("Update Competency", :class => "btn edit bigger") %>
+		</li>
 
-			<li class="form-buttons">
-				<%= submit_tag("Update Competency", :class => "btn edit bigger") %>
-			</li>
-
-			<%= link_to('Delete', {:action => 'delete', :id => @competency.id}, :class => "left btn delete") %>
-	</ul>
-		<% end %>
-</div>
+		<%= link_to('Delete', {:action => 'delete', :id => @competency.id}, :class => "left btn delete") %>
+</ul>
+<% end %>
