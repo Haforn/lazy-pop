@@ -1,20 +1,12 @@
-<div class="clearfix top-nav">
-	<%= link_to("Back to competency list", {:controller => "competencies", :action => 'index'}, :class => "btn link arrow-back left") %>
-
-</div> 
-
-<div class="wrapper clearfix">
-	<h2>New Learn Moment</h2>
+<h2>New Learn Moment</h2>
 	
-	<ul>
-		<%= form_for(:learnmoment, :url => {:action => 'create', :id => @learnmoment.id, :competency_id => @competency.id}, :html => {:multipart => true}) do |f| %> 
-		
-			<%= render(:partial => "form", :locals => {:f => f}) %>
-
-			<li class="form-buttons">
-				<%= submit_tag("Create Learn Moment", :class => "btn new bigger left") %>
-			</li>
-		<% end %>
-	</ul>
+<ul>
+	<%= form_for(:learnmoment, :url => {:action => 'create', :id => @learnmoment.id, :competency_id => @competency.id}, :html => {:multipart => true}) do |f| %> 
 	
-</div>
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<li class="form-buttons">
+			<%= submit_tag("Create Learn Moment", :class => "btn new bigger left") %>
+		</li>
+	<% end %>
+</ul>

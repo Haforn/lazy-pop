@@ -168,6 +168,9 @@ input[type="file"] {
 	&.small {
 		padding: $spacing/4 $spacing/2;
 	}
+	&.in-top {
+		margin-top: -70px;
+	}
 }
 
 .link {

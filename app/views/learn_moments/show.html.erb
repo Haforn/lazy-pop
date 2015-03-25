@@ -1,57 +1,46 @@
+<h2>Learn moment details</h2>
 
-<div class="clearfix top-nav">
+<div class="learnmoment-detail">
+	<p>Learn moment in competency <%= @competency.title %></p>
 
-<%= link_to("Back to competency list", {:controller => "competencies", :action => 'index'}, :class => "btn link arrow-back left") %>
-
-</div>
-
-<div class="clearfix wrapper">
-
-	<h2>Learn moment details</h2>
-
-	<div class="learnmoment-detail">
-		<p>Learn moment in competency <%= @competency.title %></p>
-
-		<p class="title">
-			<strong><%= @learnmoment.title %></strong>
-			<% if @learnmoment.hours != nil %>
-				<span class="hours">
-					<%= @hours_spend[@learnmoment.hours - 1] %> hours
-				</span>
-			<% end %>
-		</p>
-		<% if @learnmoment.what_was_learned.length > 0 %> 
-			<p>
-				<span class="detail-label">What was Learned?</span>
-				<%= @learnmoment.what_was_learned %>
-			</p>
+	<p class="title">
+		<strong><%= @learnmoment.title %></strong>
+		<% if @learnmoment.hours != nil %>
+			<span class="hours">
+				<%= @hours_spend[@learnmoment.hours - 1] %> hours
+			</span>
 		<% end %>
-		<% if @learnmoment.what_was_done.length > 0 %>
-			<p>
-				<span class="detail-label">What was done?</span>
-				<%= @learnmoment.what_was_done %>
-			</p>
-		<% end %>
-		<% if @learnmoment.reference.length > 0 %>
-			<p>
-				<span class="detail-label">Reference</span>
-				<%= @learnmoment.reference %>
-			</p>
-		<% end %>
-
-		<% if @learnmoment.image.length > 0 %> 
+	</p>
+	<% if @learnmoment.what_was_learned.length > 0 %> 
 		<p>
-			<span class="detail-label">Reference Image</span>
-			<%= image_tag @learnmoment.image %>
+			<span class="detail-label">What was Learned?</span>
+			<%= @learnmoment.what_was_learned %>
 		</p>
-		<% end %>
+	<% end %>
+	<% if @learnmoment.what_was_done.length > 0 %>
 		<p>
-			<span class="detail-label">Updated at</span>
-			<%= @learnmoment.updated_at.strftime "%d/%m/%Y %H:%M" %>
+			<span class="detail-label">What was done?</span>
+			<%= @learnmoment.what_was_done %>
 		</p>
+	<% end %>
+	<% if @learnmoment.reference.length > 0 %>
+		<p>
+			<span class="detail-label">Reference</span>
+			<%= @learnmoment.reference %>
+		</p>
+	<% end %>
 
-	</div> 
+	<% if @learnmoment.image.length > 0 %> 
+	<p>
+		<span class="detail-label">Reference Image</span>
+		<%= image_tag @learnmoment.image %>
+	</p>
+	<% end %>
+	<p>
+		<span class="detail-label">Updated at</span>
+		<%= @learnmoment.updated_at.strftime "%d/%m/%Y %H:%M" %>
+	</p>
 
-	<%= link_to("Edit", {:action => 'edit', :id => @learnmoment.id, :competency_id => @competency.id}, :class => "btn bigger edit") %>
+</div> 
 
-</div>
+<%= link_to("Edit", {:action => 'edit', :id => @learnmoment.id, :competency_id => @competency.id}, :class => "btn bigger edit") %>
